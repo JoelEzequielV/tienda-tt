@@ -1,0 +1,75 @@
+[
+    {
+      "id": 1,
+      "title": "Notebook HP Intel® Core™ i5",
+      "description": "este es un producto etc.",
+      "price": 1000,
+      "stock": 25,
+      "image": "../../src/img/imagen1.webp",
+      "category": "Notebooks"
+    },
+    {
+      "id": 2,
+      "title": "ABLET ALCATEL 1T - BLACK 16/1GB",
+      "description": "este es un producto etc.",
+      "price": 6.5,
+      "stock": 18,
+      "image": "../../src/img/imagen2.webp",
+      "category": "Tablets"
+    },
+    {
+      "id": 3,
+      "title": "Impresora Epson Ecotank L1250",
+      "description": "este es un producto etc.",
+      "price": 350,
+      "stock": 12,
+      "image": "../../src/img/imagen3.webp",
+      "category": "Accesorios"
+    },
+    {
+      "id": 4,
+      "title": "Celular Samsung Galaxy A25",
+      "description": "este es un producto etc.",
+      "price": 400,
+      "stock": 15,
+      "image": "../../src/img/imagen4.webp",
+      "category": "Celulares"
+    },
+    {
+      "id": 5,
+      "title": "Impresora 3d Resina Creality",
+      "description": "este es un producto etc.",
+      "price": 800,
+      "stock": 20,
+      "image": "../../src/img/imagen5.webp",
+      "category": "Accesorios"
+    },
+    {
+      "id": 6,
+      "title": "Monitor Samsung F22t35 Led 22' ",
+      "description": "este es un producto etc.",
+      "price": 320,
+      "stock": 30,
+      "image": "../../src/img/imagen6.webp",
+      "category": "Monitores"
+    },
+    {
+      "id": 7,
+      "title": "Drone DJI Mini 4 Pro",
+      "description": "este es un producto etc.",
+      "price": 2000,
+      "stock": 30,
+      "image": "../../src/img/imagen7.webp",
+      "category": "Accesorios"
+    },
+    {
+      "id": 8,
+      "title": "CPU GFAST Core i3 8GB 240GB",
+      "description": "este es un producto etc.",
+      "price": 999,
+      "stock": 30,
+      "image": "../../src/img/imagen8.webp",
+      "category": "PC"
+    }
+  ]
+  
