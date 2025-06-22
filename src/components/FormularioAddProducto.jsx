@@ -7,6 +7,7 @@ function FormularioProducto({ onAgregar, onClose }) {
         description: '',
         category: '',
         image: '',
+        stock: '',
     });
     const [errores, setErrores] = useState({});
 
@@ -29,9 +30,12 @@ function FormularioProducto({ onAgregar, onClose }) {
         if (!producto.category) {
             nuevosErrores.category = 'La categoria es obligatorio';
         }
-        /*if (!producto.image.trim()) {
-            producto.image = '../img/imagen1.webp';
-        } */
+        if (!producto.stock || producto.stock <= 0) {
+            nuevosErrores.stock = 'El stock debe ser mayor a 0.';
+        }
+        if (!producto.image.trim()) {
+            producto.image = '../src/img/default.webp';
+        } 
 
         setErrores(nuevosErrores);
         return Object.keys(nuevosErrores).length === 0;
@@ -41,14 +45,14 @@ function FormularioProducto({ onAgregar, onClose }) {
         e.preventDefault();
         if (!validarFormulario()) return;
         onAgregar(producto);
-        setProducto({ id: null, title: '', price: '', description: '', category: '' , image: ''  });
-        onClose(); // Cierra el modal
+        setProducto({ id: null, title: '', price: '', description: '', category: '' , image: '' , stock: '' });
+        onClose(); 
     };
 
     return (
         <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
             <div className="modal-dialog">
-                <div className="modal-content">
+                <div className="modal-content card">
                     <form onSubmit={handleSubmit}>
                         <div className="modal-header">
                             <h5 className="modal-title">Agregar Producto</h5>
@@ -76,6 +80,17 @@ function FormularioProducto({ onAgregar, onClose }) {
                                     className="form-control"
                                 />
                                 {errores.price && <p className="text-danger mt-1">{errores.price}</p>}
+                            </div>
+                            <div className="mb-3">
+                                <label className="form-label">Stock:</label>
+                                <input
+                                    type="number"
+                                    name="stock"
+                                    value={producto.stock}
+                                    onChange={handleChange}
+                                    className="form-control"
+                                />
+                                {errores.stock && <p className="text-danger mt-1">{errores.stock}</p>}
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">Descripción:</label>
@@ -110,8 +125,8 @@ function FormularioProducto({ onAgregar, onClose }) {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" onClick={onClose}>Cancelar</button>
-                            <button type="submit" className="btn btn-primary">Agregar</button>
+                            <button type="button" className="btn2 btnSecondary" onClick={onClose}>Cancelar</button>
+                            <button type="submit" className="btn2 btnPrimary">Agregar</button>
                         </div>
                     </form>
                 </div>

@@ -1,97 +1,154 @@
 import { createContext, useState, useEffect } from "react";
 
-export const CartContext = createContext()
+export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([])
-    const [productos, setProductos] = useState([])
-    const [cargando, setCargando] = useState(true)
-    const [error, setError] = useState(false)
-    const [isAuthenticated, setIsAuth] = useState(false)
-        // toast
-    const [toastMessage, setToastMessage] = useState('');
-    const [showToast, setShowToast] = useState(false);
-    const [toastType, setToastType] = useState('success');
+  //Estado del carrito
+  const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem('cart');
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
 
-    useEffect(() => {
-        // fetch('/data/data.json')
-        
-        fetch('https://fakestoreapi.com/products', {
-          method: 'GET',
+  const [productos, setProductos] = useState([]);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState(false);
 
-        })
-          .then(respuesta => respuesta.json())
-          .then(datos => {
-            setTimeout(() => {
-              setProductos(datos)
-              setCargando(false)
-            }, 2000)
-          })
-          .catch(error => {
-            console.log('Error', error)
-            setCargando(false)
-            setError(true)
-          })
-      }, [])
+  //Autenticación
+  const [isAuth, setIsAuth] = useState(!!localStorage.getItem('user'));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [userData, setUserData] = useState(() => {
+    const stored = localStorage.getItem('user');
+    return stored ? JSON.parse(stored) : null;
+  });
 
-    const handleAddToCart = (product, quantity) => {
-        const productInCart = cart.find((item) => item.id === product.id);
-        if (productInCart) {
-          setCart(cart.map((item) =>
-            item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-          ));
+  //Toasts
+  const [toastMessage, setToastMessage] = useState('');
+  const [showToast, setShowToast] = useState(false);
+  const [toastType, setToastType] = useState('success');
+
+  //Persistir carrito
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+
+  useEffect(() => {
+    fetch('/data/data.json')
+      .then(res => res.json())
+      .then(datos => {
+        setTimeout(() => {
+          setProductos(datos);
+          setCargando(false);
+        }, 2000);
+      })
+      .catch(err => {
+        console.log('Error', err);
+        setError(true);
+        setCargando(false);
+      });
+  }, []);
+
+  //Añadir producto
+  const handleAddToCart = (product, quantity = 1) => {
+    const productInCart = cart.find(item => item.id === product.id);
+    const productoCompleto = productos.find(p => p.id === product.id);
+  
+    if (!productoCompleto) return; 
+  
+    const stockDisponible = productoCompleto.stock;
+    const cantidadActual = productInCart ? productInCart.quantity : 0;
+  
+    if (cantidadActual + quantity > stockDisponible) {
+      setToastMessage(`Stock agotado para "${product.title}"`);
+      setToastType('danger');
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+      return;
+    }
+  
+    if (productInCart) {
+      setCart(cart.map(item =>
+        item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
+      ));
+    } else {
+      setCart([...cart, { ...product, quantity }]);
+    }
+  
+    setToastMessage(`${product.title} añadido al carrito`);
+    setToastType('success');
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
+  };
+
+  //Eliminar productos
+  const handleDeleteFromCart = (product) => {
+    let eliminado = false;
+
+    const nuevoCarrito = cart.map(item => {
+      if (item.id === product.id) {
+        if (item.quantity > 1) {
+          return { ...item, quantity: item.quantity - 1 };
         } else {
-          setCart([...cart, { ...product, quantity: quantity}]);
+          eliminado = true;
+          return null;
         }
-      
-        // Mostrar notificación de éxito
-        setToastMessage(`${product.title} añadido al carrito`);
-        setToastType('success');
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000);
-      };
-      
-    
-      const handleDeleteFromCart = (product) => {
-        let eliminado = false;
-      
-        setCart(prevCart => {
-          const nuevoCarrito = prevCart.map(item => {
-            if (item.id === product.id) {
-              if (item.quantity > 1) {
-                return { ...item, quantity: item.quantity - 1 };
-              } else {
-                eliminado = true;
-                return null;
-              }
-            }
-            return item;
-          }).filter(item => item !== null);
-      
-          // Mostrar notificación con tipo adecuado
-          setTimeout(() => {
-            if (eliminado) {
-              setToastMessage(`${product.title} fue eliminado del carrito`);
-              setToastType('danger');
-            } else {
-              setToastMessage(`Se quitó una unidad de ${product.title}`);
-              setToastType('warning');
-            }
-            setShowToast(true);
-            setTimeout(() => setShowToast(false), 3000);
-          }, 100);
-      
-          return nuevoCarrito;
-        });
-      };
+      }
+      return item;
+    }).filter(item => item !== null);
 
-    return (
-        <CartContext.Provider 
-        value={
+    setCart(nuevoCarrito);
 
-            { cart, productos, cargando, error, toastMessage,showToast, toastType, handleAddToCart, handleDeleteFromCart, isAuthenticated,setIsAuth }
-        }>
-            {children}
-        </CartContext.Provider>
-    )
-}
+    setTimeout(() => {
+      setToastMessage(eliminado
+        ? `${product.title} fue eliminado del carrito`
+        : `Se quitó una unidad de ${product.title}`);
+      setToastType(eliminado ? 'danger' : 'warning');
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+    }, 100);
+  };
+
+  //Aumentar cantidad
+  const increaseQty = (id) => {
+    setCart(prevCart => prevCart.map(item => {
+      const productoCompleto = productos.find(p => p.id === item.id);
+      if (!productoCompleto) return item;
+  
+      if (item.id === id && item.quantity < productoCompleto.stock) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    }));
+  };
+
+  //Disminuir cantidad 
+  const decreaseQty = (id) => {
+    setCart(cart.map(item =>
+      item.id === id && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    ));
+  };
+
+  //Vaciar carrito
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  //Calcular total
+  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  return (
+    <CartContext.Provider value={{
+      isAuth, setIsAuth,
+      user, setUser,
+      userData, setUserData,
+      cart, productos, cargando, error,
+      toastMessage, showToast, toastType,
+      handleAddToCart, handleDeleteFromCart,
+      increaseQty, decreaseQty, clearCart, totalPrice
+    }}>
+      {children}
+    </CartContext.Provider>
+  );
+};

@@ -1,78 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext,useState } from "react";
+import { AdminContext } from "../context/AdminContext";
 import FormularioAddProducto from "../components/FormularioAddProducto";
 import FormularioEditProducto from '../components/FormularioEditProducto';
 import FormularioDeleteProd from "../components/FormularioDeleteProd";
 import Footer from '../components/estaticos/Footer';
+import '../App.css'
+
+//user en localStorange
+const user = JSON.parse(localStorage.getItem('user'));
+const nombre = user?.email || 'Admin';
 
 const Admin = () => {
-  const [productos, setProductos] = useState([]);
-  const [productoEditar, setProductoEditar] = useState(null);
-  const [productoDelete, setProductoDelete] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [open, setOpen] = useState(false);
+  const {
+    productos,
+    loading,
+    productoEditar,
+    setProductoEditar,
+    productoDelete,
+    setProductoDelete,
+    open,
+    setOpen,
+    agregarProducto,
+    handleGuardarCambios,
+    handleDelete
+  } = useContext(AdminContext);
 
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then((response) => response.json())
-      .then((data) => {
-        setTimeout(() => {
-          setProductos(data);
-          setLoading(false);
-        }, 2000);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      });
-  }, []);
+  const [busqueda, setBusqueda] = useState('');
+  const [paginaActual, setPaginaActual] = useState(1);
+  const productosPorPagina = 6;
 
-  const agregarProducto = async (producto) => {
-    try {
-      const respuesta = await fetch('https://fakestoreapi.com/products', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(producto)
-      });
-      if (!respuesta.ok) throw new Error('Error al agregar producto');
-      const data = await respuesta.json();
-      alert('Producto agregado correctamente');
-      setProductos([...productos, data]); // agregarlo al estado
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+  //Filtro
+  const productosFiltrados = productos.filter((producto) =>
+    producto.title.toLowerCase().includes(busqueda.toLowerCase())
+  );
 
-  const handleGuardarCambios = async (productoActualizado) => {
-    try {
-      const respuesta = await fetch(`https://fakestoreapi.com/products/${productoActualizado.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(productoActualizado)
-      });
-      if (!respuesta.ok) throw new Error('Error al actualizar producto');
-      const data = await respuesta.json();
-      alert('El producto se actualizó correctamente');
-      setProductos(productos.map(p => p.id === data.id ? data : p));
-      setProductoEditar(null);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+  //Paginacion
+  const indexUltimo = paginaActual * productosPorPagina;
+  const indexPrimero = indexUltimo - productosPorPagina;
+  const productosPaginados = productosFiltrados.slice(indexPrimero, indexUltimo);
 
-  const handleDelete = async (productoId) => {
-    try {
-      const respuesta = await fetch(`https://fakestoreapi.com/products/${productoId}`, {
-        method: 'DELETE'
-      });
-      if (!respuesta.ok) throw new Error('Error al eliminar producto');
-      await respuesta.json();
-      alert('El producto se eliminó correctamente');
-      setProductos(productos.filter(p => p.id !== productoId));
-      setProductoDelete(null);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+  const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina);
 
   return (
     <>
@@ -83,49 +50,73 @@ const Admin = () => {
         </div>
       ) : (
         <>
-          <nav className="d-flex justify-content-between align-items-center mb-4">
+          <nav className="bg-dark d-flex justify-content-between align-items-center p-2">
             <ul className="nav">
               <li className="nav-item">
-                <button className="btn btn-outline-danger">
-                  <a href="/login">
-                    <i className="fa-solid fa-right-from-bracket"></i>
-                  </a>
-                </button>
+                
+              <button className="btn btn-outline-danger" onClick={() => {
+                localStorage.removeItem('user');
+                window.location.href = '/login';
+              }}>
+                <i className="fa-solid fa-right-from-bracket"></i>
+              </button>
+
               </li>
               <li className="nav-item ms-3">
-                <a href="/admin" className="nav-link text-white">Admin</a>
+                <a href="/admin" className="nav-link text-white active">Admin</a>
+              </li>
+              <li className="nav-item ms-3">
+                <a href="/" className="nav-link text-white">Home</a>
               </li>
             </ul>
-            <button className="btn btn-success" onClick={() => setOpen(true)}>
+            <button className="btn btn-outline-primary" onClick={() => setOpen(true)}>
               Agregar producto nuevo
             </button>
           </nav>
 
           <h1 className="mb-4 text-center">Panel Administrativo</h1>
+          <h2 className="text-center mb-4">Hola, {nombre}</h2>
 
           <div className="container">
-            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-              {productos.map((product) => (
+
+              <div className="col-md-6">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Buscar productos..."
+                  value={busqueda}
+                  onChange={(e) => {
+                    setBusqueda(e.target.value);
+                    setPaginaActual(1);
+                  }}
+                />
+              </div>
+
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2">
+            {productosPaginados.map((product) => (
                 <div key={product.id} className="col">
                   <div className="card h-100 shadow-sm">
                     <img
                       src={product.image}
                       className="card-img-top"
                       alt={product.title}
-                      style={{ height: '200px', objectFit: 'cover' }}
+                      
+                      style={{maxWidth: '5em', minHeight: '10em', margin: 'auto', objectFit: 'contain'}}
                     />
                     <div className="card-body d-flex flex-column">
                       <h5 className="card-title">{product.title}</h5>
-                      <p className="card-text">${product.price}</p>
-                      <div className="mt-auto d-flex justify-content-between">
+                      <span className="card-text"><b>Price:</b> ${product.price}</span>
+                      <span className="card-text"><b>Category:</b> {product.category}</span>
+                      <span className="card-text">< b>Stock:</b> {product.stock} </span>
+                      <div className=" d-flex justify-content-between mt-2">
                         <button
-                          className="btn btn-primary btn-sm"
+                          className="btn2 btnPrimary btn-sm"
                           onClick={() => setProductoEditar(product)}
                         >
                           Editar
                         </button>
                         <button
-                          className="btn btn-danger btn-sm"
+                          className="btn2 btnSecondary btn-sm"
                           onClick={() => setProductoDelete(product)}
                         >
                           Eliminar
@@ -136,6 +127,21 @@ const Admin = () => {
                 </div>
               ))}
             </div>
+
+            <div className="col-md-6 text-end mb-4 m-4">
+              <nav>
+                <ul className="pagination justify-content-end mb-0">
+                  {Array.from({ length: totalPaginas }, (_, i) => i + 1).map((num) => (
+                    <li key={num} className={`page-item ${num === paginaActual ? 'active' : ''}`}>
+                      <button className="page-link" onClick={() => setPaginaActual(num)}>
+                        {num}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+
           </div>
 
           {productoEditar && (

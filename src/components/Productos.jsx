@@ -3,8 +3,8 @@ import React , {useState} from 'react'
 const Productos = ({producto,agregarCarrito}) => {
 
   const [quantity, setCantidad] = useState(1);
-  const stock = 10; //simulando stock para todos
-  const increase = () => setCantidad(prev => (prev < stock ? prev + 1 : prev));
+
+  const increase = () => setCantidad(prev => (prev < producto.stock ? prev + 1 : prev));
   const decrease = () => setCantidad(prev => (prev > 1 ? prev - 1 : 1));
   
   return (
@@ -18,16 +18,16 @@ const Productos = ({producto,agregarCarrito}) => {
       <div className="card-body">
           <h6 className="card-title txtLimit">{producto.title}</h6>
           <span className="card-text text-danger">Precio: ${producto.price}</span>
-          <p className="card-text"><b>Stock:</b> {stock}</p>
+          <p className="card-text"><b>Stock:</b> {producto.stock}</p>
       
 
         <div className="card-footer" style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'center', gap:'0.5em'}}>
           <div style={{display: 'flex', gap:'0.5em'}}>
-            <button className='btn btn-dark' onClick={decrease}>-</button>
+            <button className='btn btnPrimary' onClick={decrease}>-</button>
             <span className="input-group-text">{quantity}</span>
-            <button className='btn btn-dark' onClick={increase}>+</button>
+            <button className='btn btnPrimary' onClick={increase}>+</button>
           </div>
-          <button onClick={()=> agregarCarrito(producto,quantity)} className="btn btn-dark">Agregar al carrito</button>
+          <button onClick={()=> agregarCarrito(producto,quantity)} className="btn2 btnPrimary">Agregar al carrito</button>
           
         </div>
 

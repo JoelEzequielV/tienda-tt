@@ -18,7 +18,7 @@ const FormularioDeleteProd = ({ producto, onClose, onConfirmDelete }) => {
 
   return (
     <div className="modal show fade d-block" tabIndex="-1">
-      <div className="modal-dialog">
+      <div className="modal-dialog card">
         <div className="modal-content shadow">
           <div className="modal-header">
             <h5 className="modal-title">Eliminar producto</h5>
@@ -29,10 +29,10 @@ const FormularioDeleteProd = ({ producto, onClose, onConfirmDelete }) => {
               <p>¿Seguro que deseas eliminar el producto <strong>{formData.title}</strong>?</p>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" onClick={onClose}>
+              <button type="button" className="btn2 btnSecondary" onClick={onClose}>
                 Cancelar
               </button>
-              <button type="submit" className="btn btn-danger">
+              <button type="submit" className="btn2 btnPrimary">
                 Eliminar
               </button>
             </div>

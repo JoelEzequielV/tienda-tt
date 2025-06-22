@@ -4,16 +4,16 @@
       "title": "Notebook HP Intel® Core™ i5",
       "description": "este es un producto etc.",
       "price": 1000,
-      "stock": 25,
+      "stock": 5,
       "image": "../../src/img/imagen1.webp",
       "category": "Notebooks"
     },
     {
       "id": 2,
-      "title": "ABLET ALCATEL 1T - BLACK 16/1GB",
+      "title": "TABLET ALCATEL 1T - BLACK 16/1GB",
       "description": "este es un producto etc.",
       "price": 6.5,
-      "stock": 18,
+      "stock": 8,
       "image": "../../src/img/imagen2.webp",
       "category": "Tablets"
     },
@@ -22,7 +22,7 @@
       "title": "Impresora Epson Ecotank L1250",
       "description": "este es un producto etc.",
       "price": 350,
-      "stock": 12,
+      "stock": 2,
       "image": "../../src/img/imagen3.webp",
       "category": "Accesorios"
     },
@@ -31,7 +31,7 @@
       "title": "Celular Samsung Galaxy A25",
       "description": "este es un producto etc.",
       "price": 400,
-      "stock": 15,
+      "stock": 5,
       "image": "../../src/img/imagen4.webp",
       "category": "Celulares"
     },
@@ -40,7 +40,7 @@
       "title": "Impresora 3d Resina Creality",
       "description": "este es un producto etc.",
       "price": 800,
-      "stock": 20,
+      "stock": 8,
       "image": "../../src/img/imagen5.webp",
       "category": "Accesorios"
     },
@@ -49,7 +49,7 @@
       "title": "Monitor Samsung F22t35 Led 22' ",
       "description": "este es un producto etc.",
       "price": 320,
-      "stock": 30,
+      "stock": 3,
       "image": "../../src/img/imagen6.webp",
       "category": "Monitores"
     },
@@ -58,7 +58,7 @@
       "title": "Drone DJI Mini 4 Pro",
       "description": "este es un producto etc.",
       "price": 2000,
-      "stock": 30,
+      "stock": 3,
       "image": "../../src/img/imagen7.webp",
       "category": "Accesorios"
     },
@@ -67,9 +67,82 @@
       "title": "CPU GFAST Core i3 8GB 240GB",
       "description": "este es un producto etc.",
       "price": 999,
-      "stock": 30,
+      "stock": 3,
       "image": "../../src/img/imagen8.webp",
       "category": "PC"
+    },
+    {
+      "id": 9,
+      "title": "Teclado Mecánico Redragon K552 RGB",
+      "description": "este es un producto etc.",
+      "price": 75,
+      "stock": 10,
+      "image": "../../src/img/imagen9.webp",
+      "category": "Accesorios"
+    },
+    {
+      "id": 10,
+      "title": "Mouse Gamer Logitech G502 HERO",
+      "description": "este es un producto etc.",
+      "price": 60,
+      "stock": 12,
+      "image": "../../src/img/imagen10.webp",
+      "category": "Accesorios"
+    },
+    {
+      "id": 11,
+      "title": "Placa de Video NVIDIA RTX 4060 8GB",
+      "description": "este es un producto etc.",
+      "price": 520,
+      "stock": 4,
+      "image": "../../src/img/imagen11.webp",
+      "category": "Hardware"
+    },
+    {
+      "id": 12,
+      "title": "Memoria RAM Kingston Fury 16GB DDR4",
+      "description": "este es un producto etc.",
+      "price": 120,
+      "stock": 7,
+      "image": "../../src/img/imagen12.webp",
+      "category": "Hardware"
+    },
+    {
+      "id": 13,
+      "title": "Disco Sólido SSD WD Blue 1TB",
+      "description": "este es un producto etc.",
+      "price": 140,
+      "stock": 6,
+      "image": "../../src/img/imagen13.webp",
+      "category": "Hardware"
+    },
+    {
+      "id": 14,
+      "title": "Gabinete Gamer Corsair iCUE 220T",
+      "description": "este es un producto etc.",
+      "price": 180,
+      "stock": 3,
+      "image": "../../src/img/imagen14.webp",
+      "category": "Hardware"
+    },
+    {
+      "id": 15,
+      "title": "Fuente EVGA 600W 80 Plus White",
+      "description": "este es un producto etc.",
+      "price": 90,
+      "stock": 5,
+      "image": "../../src/img/imagen15.webp",
+      "category": "Hardware"
+    },
+    {
+      "id": 16,
+      "title": "Notebook Lenovo IdeaPad Ryzen 5",
+      "description": "este es un producto etc.",
+      "price": 1100,
+      "stock": 2,
+      "image": "../../src/img/imagen16.webp",
+      "category": "Notebooks"
     }
+   
   ]
   

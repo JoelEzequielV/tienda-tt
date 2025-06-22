@@ -1,16 +1,13 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
 import Header from '../components/estaticos/Header'
 import Footer from '../components/estaticos/Footer'
- 
-const Login = ({borrarProducto,cart}) => {
-  const { setIsAuth } = useContext(CartContext);
 
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,13 +31,20 @@ const Login = ({borrarProducto,cart}) => {
       if (!foundUser) {
         setErrors({ email: 'Credenciales inválidas' });
       } else {
+        const userData = {
+          email: foundUser.email,
+          role: foundUser.role
+        };
+        localStorage.setItem('user', JSON.stringify(userData));
+      
+
         if (foundUser.role === 'admin') {
-          setIsAuth(true);
-          navigate('/admin');
+          window.location.href = '/admin';
         } else {
-          navigate('/');
-        }
+          window.location.href = '/login';
+        }        
       }
+      
     } catch (err) {
       console.error('Error fetching users:', err);
       setErrors({ email: 'Algo salió mal. Por favor, inténtalo de nuevo más tarde.' });
@@ -49,12 +53,14 @@ const Login = ({borrarProducto,cart}) => {
 
   return (
 <>
-  <Header borrarProducto={borrarProducto} cartItems={cart}/>
-    <div className="container mt-5">
+  <Header />
+    <div className="container mt-3">
       <div className="text-center"> 
-        <span><b>admin:</b> admin@mail.com <b>client:</b> client@mail.com</span><br />
-        <span><b>Pass:</b> 1234</span><br />
+        <span><b>admin:</b> admin@mail.com <br />
+        <b>client:</b> client@mail.com</span><br />
+        <span><b>password:</b> 1234</span><br />
       </div>
+      <hr />
       <form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: '400px' }}>
         <div className="mb-3">
           <label htmlFor="formBasicEmail" className="form-label fw-bold">
@@ -86,10 +92,10 @@ const Login = ({borrarProducto,cart}) => {
           {errors.password && <div className="invalid-feedback">{errors.password}</div>}
         </div>
 
-        <button type="submit" className="btn btn-dark w-100">
+        <button type="submit" className="btn2 btnPrimary w-100">
           Ingresar
         </button><br /><br />
-        <a href="/">Volver Atras</a>
+        <a href="/" style={{ color: '#ff3c78' }}>Volver Atras</a>
       </form>
     </div>
   <Footer />
