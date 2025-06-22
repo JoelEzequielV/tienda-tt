@@ -5,7 +5,7 @@
       "description": "este es un producto etc.",
       "price": 1000,
       "stock": 5,
-      "image": "../../src/img/imagen1.webp",
+      "image": "../img/imagen1.webp",
       "category": "Notebooks"
     },
     {
@@ -14,7 +14,7 @@
       "description": "este es un producto etc.",
       "price": 6.5,
       "stock": 8,
-      "image": "../../src/img/imagen2.webp",
+      "image": "../img/imagen2.webp",
       "category": "Tablets"
     },
     {
@@ -23,7 +23,7 @@
       "description": "este es un producto etc.",
       "price": 350,
       "stock": 2,
-      "image": "../../src/img/imagen3.webp",
+      "image": "../img/imagen3.webp",
       "category": "Accesorios"
     },
     {
@@ -32,7 +32,7 @@
       "description": "este es un producto etc.",
       "price": 400,
       "stock": 5,
-      "image": "../../src/img/imagen4.webp",
+      "image": "../src/img/imagen4.webp",
       "category": "Celulares"
     },
     {
@@ -41,7 +41,7 @@
       "description": "este es un producto etc.",
       "price": 800,
       "stock": 8,
-      "image": "../../src/img/imagen5.webp",
+      "image": "../src/img/imagen5.webp",
       "category": "Accesorios"
     },
     {
@@ -50,7 +50,7 @@
       "description": "este es un producto etc.",
       "price": 320,
       "stock": 3,
-      "image": "../../src/img/imagen6.webp",
+      "image": "../src/img/imagen6.webp",
       "category": "Monitores"
     },
     {
@@ -59,7 +59,7 @@
       "description": "este es un producto etc.",
       "price": 2000,
       "stock": 3,
-      "image": "../../src/img/imagen7.webp",
+      "image": "../src/img/imagen7.webp",
       "category": "Accesorios"
     },
     {
@@ -68,7 +68,7 @@
       "description": "este es un producto etc.",
       "price": 999,
       "stock": 3,
-      "image": "../../src/img/imagen8.webp",
+      "image": "../src/img/imagen8.webp",
       "category": "PC"
     },
     {
@@ -77,7 +77,7 @@
       "description": "este es un producto etc.",
       "price": 75,
       "stock": 10,
-      "image": "../../src/img/imagen9.webp",
+      "image": "../src/img/imagen9.webp",
       "category": "Accesorios"
     },
     {
@@ -86,7 +86,7 @@
       "description": "este es un producto etc.",
       "price": 60,
       "stock": 12,
-      "image": "../../src/img/imagen10.webp",
+      "image": "../src/img/imagen10.webp",
       "category": "Accesorios"
     },
     {
@@ -95,7 +95,7 @@
       "description": "este es un producto etc.",
       "price": 520,
       "stock": 4,
-      "image": "../../src/img/imagen11.webp",
+      "image": "../src/img/imagen11.webp",
       "category": "Hardware"
     },
     {
@@ -104,7 +104,7 @@
       "description": "este es un producto etc.",
       "price": 120,
       "stock": 7,
-      "image": "../../src/img/imagen12.webp",
+      "image": "../src/img/imagen12.webp",
       "category": "Hardware"
     },
     {
@@ -113,7 +113,7 @@
       "description": "este es un producto etc.",
       "price": 140,
       "stock": 6,
-      "image": "../../src/img/imagen13.webp",
+      "image": "../src/img/imagen13.webp",
       "category": "Hardware"
     },
     {
@@ -122,7 +122,7 @@
       "description": "este es un producto etc.",
       "price": 180,
       "stock": 3,
-      "image": "../../src/img/imagen14.webp",
+      "image": "../src/img/imagen14.webp",
       "category": "Hardware"
     },
     {
@@ -131,7 +131,7 @@
       "description": "este es un producto etc.",
       "price": 90,
       "stock": 5,
-      "image": "../../src/img/imagen15.webp",
+      "image": "../src/img/imagen15.webp",
       "category": "Hardware"
     },
     {
@@ -140,7 +140,7 @@
       "description": "este es un producto etc.",
       "price": 1100,
       "stock": 2,
-      "image": "../../src/img/imagen16.webp",
+      "image": "../src/img/imagen16.webp",
       "category": "Notebooks"
     }
    
