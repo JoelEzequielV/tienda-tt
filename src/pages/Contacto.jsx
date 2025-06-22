@@ -47,7 +47,7 @@ const Contacto = ({cart, borrarProducto}) => {
       <div className="container py-5">
         <div className="row justify-content-center">
           <div className="col-md-8">
-            <div className="card shadow-lg border-1 rounded-4" style={{background: 'rgb(54 2 116 / 25%)'}}>
+            <div className="card shadow-lg border-1" style={{background: 'rgb(54 2 116 / 25%)'}}>
               <div className="card-body p-5">
                 <h2 className="text-center mb-4">Contáctanos</h2>
                 {enviado && (
