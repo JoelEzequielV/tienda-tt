@@ -20,21 +20,21 @@ body{
     overflow: hidden;
 }
 a {
-    color: #fff;
-    text-decoration: none;
+    color: #fff !important;
+    text-decoration: none !important;
 }
 .pagination {
-    --bs-pagination-active-bg: #000;
-    --bs-pagination-active-border-color: #000;
-    --bs-pagination-color: #000;
-    --bs-link-color: #000;
-    --bs-link-hover-color: #000;
-    --bs-pagination-active-bg: #000;
-    --bs-pagination-active-border-color: #000;
+    --bs-pagination-active-bg: #000 !important;;
+    --bs-pagination-active-border-color: #000 !important;;
+    --bs-pagination-color: #000 !important;;
+    --bs-link-color: #000 !important;;
+    --bs-link-hover-color: #000 !important;;
+    --bs-pagination-active-bg: #000 !important;;
+    --bs-pagination-active-border-color: #000 !important;;
 }
 .page-link:hover{
     outline-color: #000 !important;
-    box-shadow: none;
+    box-shadow: none !important;;
 }
 .ulNav{
     list-style: none;
