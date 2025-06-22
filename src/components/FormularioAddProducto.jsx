@@ -34,7 +34,7 @@ function FormularioProducto({ onAgregar, onClose }) {
             nuevosErrores.stock = 'El stock debe ser mayor a 0.';
         }
         if (!producto.image.trim()) {
-            producto.image = '../src/img/default.webp';
+            producto.image = '../img/default.webp';
         } 
 
         setErrores(nuevosErrores);
@@ -114,7 +114,7 @@ function FormularioProducto({ onAgregar, onClose }) {
                                 {errores.category && <p className="text-danger mt-1">{errores.category}</p>}
                             </div>
                             <div className="mb-3">
-                                <label className="form-label">Imagen (url):</label>
+                                <label className="form-label">Imagen (url) / <span style={{color: 'red'}}>si esta vacia se muestra una por defecto:</span></label>
                                 <input
                                     type='text'
                                     name="image"
