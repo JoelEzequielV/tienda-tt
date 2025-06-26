@@ -109,7 +109,7 @@ list-style: none;
 .navbar-collapse{
     max-height: 0;
     overflow: hidden !important;
-
+    transition: max-height 0.3s ease-in-out !important;
 }
 .navbar-collapse.show{
     max-height: 11rem; 
