@@ -77,7 +77,7 @@ const Admin = () => {
           <h2 className="text-center mb-4">Hola, {nombre}</h2>
 
           <div className="container">
-              <div className="col-md-6">
+              <div className="col-md-6 m-auto">
                 <input
                   type="text"
                   className="form-control"
