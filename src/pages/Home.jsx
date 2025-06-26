@@ -54,7 +54,7 @@ const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina);
             <p className="mt-2">Cargando productos...</p>
             </div>
             : <>
-                <div className="row mb-4" style={{rowGap: '1rem'}}>
+                <div className="row mb-4 me-4 ms-4" style={{rowGap: '1rem'}}>
                   <div className="col-md-6">
                     <input
                       type="text"
@@ -85,7 +85,7 @@ const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina);
 
                 <ProductList agregarCarrito={agregarCarrito} productos={productosActuales} />
                 <nav>
-                  <ul className="pagination justify-content-center mt-4">
+                  <ul className="pagination justify-content-center mb-4">
                     <li className={`page-item ${paginaActual === 1 ? 'disabled' : ''}`}>
                       <button className="page-link" onClick={() => cambiarPagina(paginaActual - 1)}>Anterior</button>
                     </li>
