@@ -12,7 +12,7 @@ const Productos = ({producto,agregarCarrito}) => {
     <div className='card'>
       <a href={"/productos/"+producto.id}>
       <div>
-        <img className="card-img-top" src={producto.image} alt={producto.title} style={{maxWidth: '5em', minHeight: '10em', margin: '0.5em', objectFit: 'contain'}} />
+        <img className="card-img-top" src={producto.image} alt={producto.title} style={{maxWidth: '8em', minHeight: '10em', margin: '0.5em', objectFit: 'contain'}} />
       </div>
       </a>
       <div className="card-body">
