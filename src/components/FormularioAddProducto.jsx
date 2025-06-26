@@ -67,6 +67,7 @@ function FormularioProducto({ onAgregar, onClose }) {
                                     value={producto.title}
                                     onChange={handleChange}
                                     className="form-control"
+                                    placeholder='Nombre del producto...'
                                 />
                                 {errores.title && <p className="text-danger mt-1">{errores.title}</p>}
                             </div>
@@ -78,6 +79,7 @@ function FormularioProducto({ onAgregar, onClose }) {
                                     value={producto.price}
                                     onChange={handleChange}
                                     className="form-control"
+                                    placeholder='Precio del producto...'
                                 />
                                 {errores.price && <p className="text-danger mt-1">{errores.price}</p>}
                             </div>
@@ -89,6 +91,7 @@ function FormularioProducto({ onAgregar, onClose }) {
                                     value={producto.stock}
                                     onChange={handleChange}
                                     className="form-control"
+                                    placeholder='Stock del producto...'
                                 />
                                 {errores.stock && <p className="text-danger mt-1">{errores.stock}</p>}
                             </div>
@@ -99,6 +102,7 @@ function FormularioProducto({ onAgregar, onClose }) {
                                     value={producto.description}
                                     onChange={handleChange}
                                     className="form-control"
+                                    placeholder='Descripción del producto...'
                                 />
                                 {errores.description && <p className="text-danger mt-1">{errores.description}</p>}
                             </div>
@@ -110,6 +114,7 @@ function FormularioProducto({ onAgregar, onClose }) {
                                     value={producto.category}
                                     onChange={handleChange}
                                     className="form-control"
+                                    placeholder='Categoria del producto...'
                                 />
                                 {errores.category && <p className="text-danger mt-1">{errores.category}</p>}
                             </div>
