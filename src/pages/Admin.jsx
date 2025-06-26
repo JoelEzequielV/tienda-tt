@@ -128,7 +128,7 @@ const Admin = () => {
               ))}
             </div>
 
-            <div className="col-md-6 text-end mb-4 m-4">
+            <div className="mb-4 m-4">
               <nav>
                 <ul className="pagination justify-content-center mb-0">
                   {Array.from({ length: totalPaginas }, (_, i) => i + 1).map((num) => (
