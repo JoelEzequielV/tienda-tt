@@ -43,42 +43,40 @@ const Admin = () => {
 
   return (
     <>
+      <nav className="bg-dark d-flex justify-content-between align-items-center p-2">
+        <ul className="nav">
+          <li className="nav-item">
+            
+          <button className="btn btn-outline-danger" onClick={() => {
+            localStorage.removeItem('user');
+            window.location.href = '/login';
+          }}>
+            <i className="fa-solid fa-right-from-bracket"></i>
+          </button>
+
+          </li>
+          <li className="nav-item ms-3">
+            <a href="/admin" className="nav-link text-white active">Admin</a>
+          </li>
+          <li className="nav-item ms-3">
+            <a href="/" className="nav-link text-white">Home</a>
+          </li>
+        </ul>
+        <button className="btn btn-outline-primary" onClick={() => setOpen(true)}>
+          Agregar producto nuevo
+        </button>
+      </nav>
       {loading ? (
-        <div className="text-center">
-          <div className="spinner-border text-white" role="status"></div>
+        <div className="text-center mt-5">
+          <div className="spinner-border text-dark" role="status"></div>
           <p className="mt-2">Cargando...</p>
         </div>
       ) : (
         <>
-          <nav className="bg-dark d-flex justify-content-between align-items-center p-2">
-            <ul className="nav">
-              <li className="nav-item">
-                
-              <button className="btn btn-outline-danger" onClick={() => {
-                localStorage.removeItem('user');
-                window.location.href = '/login';
-              }}>
-                <i className="fa-solid fa-right-from-bracket"></i>
-              </button>
-
-              </li>
-              <li className="nav-item ms-3">
-                <a href="/admin" className="nav-link text-white active">Admin</a>
-              </li>
-              <li className="nav-item ms-3">
-                <a href="/" className="nav-link text-white">Home</a>
-              </li>
-            </ul>
-            <button className="btn btn-outline-primary" onClick={() => setOpen(true)}>
-              Agregar producto nuevo
-            </button>
-          </nav>
-
           <h1 className="mb-4 text-center">Panel Administrativo</h1>
           <h2 className="text-center mb-4">Hola, {nombre}</h2>
 
           <div className="container">
-
               <div className="col-md-6">
                 <input
                   type="text"
