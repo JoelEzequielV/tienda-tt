@@ -81,7 +81,7 @@ const Header = () => {
           </ul>
 
           <button
-            className="btn position-relative"
+            className="btn position-relative me-3 mt-3"
             onClick={() => setCartOpen(true)}
             data-bs-toggle="modal"
             data-bs-target="#cartModal"
