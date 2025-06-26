@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Cart from '../Cart';
-import { CartContext } from '../../context/CartContext';
+import { CartContext } from '/src/context/CartContext';
 
 const Header = () => {
   const { cart } = useContext(CartContext);
@@ -24,7 +24,7 @@ const Header = () => {
     const handleResize = () => {
       const esEscritorio = window.innerWidth >= 992;
       setIsDesktop(esEscritorio);
-      if (esEscritorio) setMenuAbierto(true);
+      if (esEscritorio) setMenuAbierto(false);
     };
 
     handleResize();
@@ -136,6 +136,7 @@ const Header = () => {
           )}
         </ul>
       </div>
+
     </header>
   );
 };
