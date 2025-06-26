@@ -105,4 +105,13 @@ list-style: none;
     color: #ff3c78 !important;
     font-weight: bold;
     border-bottom: 2px solid #ff3c78;
-  }
+}
+.navbar-collapse{
+    max-height: 0;
+    overflow: hidden !important;
+
+}
+.navbar-collapse.show{
+    max-height: 11rem; 
+    transition: max-height 0.3s ease-in-out !important;
+}
