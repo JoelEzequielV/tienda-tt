@@ -101,7 +101,7 @@ const Admin = () => {
                       className="card-img-top"
                       alt={product.title}
                       
-                      style={{maxWidth: '5em', minHeight: '10em', margin: 'auto', objectFit: 'contain'}}
+                      style={{maxWidth: '8em', minHeight: '10em', margin: 'auto', objectFit: 'contain'}}
                     />
                     <div className="card-body d-flex flex-column">
                       <h5 className="card-title">{product.title}</h5>
@@ -180,3 +180,4 @@ const Admin = () => {
 };
 
 export default Admin;
+
